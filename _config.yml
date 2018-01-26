@@ -16,19 +16,8 @@ markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 highligher: rouge
 timezone: Asia/Singapore
 excerpt_separator: <!--more-->
-plugins:
-  - jekyll-feed
-
 # Exclude from processing.
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - node_modules
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
-
+exclude: ['Gemfile', 'Gemfile.lock', 'Rakefile', 'README.md']
 post:
   template: _post.txt
   extension: md
