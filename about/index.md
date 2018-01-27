@@ -16,3 +16,5 @@ I wish to contribute to a world where technologies are more __open-sourced__, po
 Email: [alex.xiong.tech at gmail dot com](mailto:alex.xiong.tech@gmail.com)
 | Keybase: [@alexxiong97](https://keybase.io/alexxiong97)
 | Twitter: [@ALuoyuan](https://twitter.com/ALuoyuan)
+
+LinkedIn: [@AlexXiong](https://www.linkedin.com/in/luoyuanxiong/)
