@@ -1,17 +1,18 @@
 /* This file contains all the constants for colors and font styles */
 
-$body-font:   ETbook, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
-// Note that Gill Sans is the top of the stack and corresponds to what is used in Tufte's books
-// However, it is not a free font, so if it is not present on the computer that is viewing the webpage
-// The free Google 'Lato' font is used instead. It is similar.
+/*-- Global stuff with fonts, background colors,etc --*/
+
+$print-body-font:   ETBembo, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+$print-sans-font:  "Gill Sans", "Gill Sans MT", "Lato", Calibri, sans-serif;
+
+$body-font:   ETBembo, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
 $sans-font:  "Gill Sans", "Gill Sans MT", "Lato", Calibri, sans-serif;
+
 $code-font: Consolas, "Liberation Mono", Menlo, Courier, monospace;
 $url-font: "Lucida Console", "Lucida Sans Typewriter", Monaco, "Bitstream Vera Sans Mono", monospace;
-$text-color: #111;
-$bg-color: #fffff8;
-$contrast-color: #a00000;
+$text-color: rgb(59, 59, 59);
+$bg-color: rgb(249, 249, 249);
+$contrast-color: #0099FF;
+$inactive-color: #A6ACAF;
 $border-color: #333333;
-$link-style: color; // choices are 'color' or 'underline'. Default is color using $contrast-color set above
-
-
-
+// for syntax highlighting
