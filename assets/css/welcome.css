@@ -10,7 +10,7 @@ html, body {
 
 
 body {
-    background-image: url(/assets/img/nicolacard.png), linear-gradient(to bottom, #021e42 0%,#0d426b 100%,#F8F8F6 0%,#f8f8f6 100%);
+    background-image: linear-gradient(to bottom, #021e42 0%,#0d426b 100%,#F8F8F6 0%,#f8f8f6 100%);
     background-size: auto 100%;
     background-repeat: no-repeat;
     background-position: top left;

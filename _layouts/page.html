@@ -3,6 +3,13 @@ layout: default
 ---
 <h1>{{ page.title}}</h1>
 <p class="subtitle">{{ page.date | date: "%B %-d, %Y" }}</p>
-
+<p>{% marginfigure 'info_avatar' 'assets/img/alex.jpg'
+  '<a>Alex Xiong </a>
+  <br>
+  I am working to bridge the gap between beautiful cryptographic primitives and the underutilization or misimplementation of them.
+  <br>
+  Undergrad at <a href="http://www.ntu.edu.sg/Pages/home.aspx" target="_blank">NTU Singapore</a>, once a <a href="https://new.consensys.net/">ConsenSys Diligence</a> intern.
+  <br>
+  ( Photo by <a href="https://www.instagram.com/huizhong_adiong/ target="_blank"">Du Huizhong</a> )'%}</p>
 
 {{ content }}
