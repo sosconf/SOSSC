@@ -274,9 +274,10 @@ sub { top: 0.2rem; }
 
 .fullwidth {
   width: 95%;
+}
+.halfwidth {
   max-width: 230px;
 }
-
 .sidenote, .marginnote{
   float: right;
   clear: right;
@@ -295,11 +296,7 @@ sub { top: 0.2rem; }
   line-height: 2.177777777778;
   margin-bottom: 2.177777777778rem;
 }
-@media screen and (min-width: 1024px){
-  .sidenote, .marginnote{
-    max-width: 300px;
-  }
-}
+
 @media screen and (max-width: 600px){
   .sidenote, .marginnote{
     width: 25%;
