@@ -12,6 +12,8 @@ github_username:  AlexXiong97
 
 # Build settings
 markdown: kramdown
+kramdown:
+  toc_levels: 1..2
 markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 highligher: rouge
 timezone: Asia/Singapore

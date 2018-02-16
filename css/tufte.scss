@@ -601,3 +601,18 @@ nav.group a {
 .listing h4 {
   margin-top: 0;
 }
+
+.main-column-img {
+  margin-top: 20px;
+}
+
+/* Style for table of contents */
+#markdown-toc {
+  list-style-position: inside;
+  margin-left: 30px;
+  margin-bottom: 30px;
+}
+
+#markdown-toc li {
+  list-style: none;
+}

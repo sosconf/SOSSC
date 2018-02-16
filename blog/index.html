@@ -8,8 +8,8 @@ title: Blog Post
   {% for post in site.posts %}
     <li class="listing">
       <a href="{{base }}{{ post.url }}"><h4 class="contrast">{{ post.title }}</h4></a>
-      <span class="smaller">{{ post.date | date: "%B %-d, %Y" }}</span>  <br/>
-
+      <span class="smaller">{{ post.date | date: "%B %-d, %Y" }}</span> <br/>
+    	{{ post.summary }}	
     </li>
   {% endfor %}
 </ul>
