@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+  <meta name="description" content="{% if page.summary %}{{ page.summary | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
 
   <link rel="me" href="https://twitter.com/ALuoyuan" />
   <link rel="me" href="https://github.com/AlexXiong97" />
@@ -44,7 +44,7 @@
     <meta content="{{ base }}/assets/img/alex.jpg" property="og:image">
   {% endif %}
   {% if page.categories %}
-    {% for category in page.categories limit:1 %}
+    {% for category in page.categories limit:10 %}
     <meta content="{{ category }}" property="article:section">
     {% endfor %}
   {% endif %}
@@ -87,4 +87,5 @@
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
   <!-- <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" /> -->
+  {% seo %}
 </head>

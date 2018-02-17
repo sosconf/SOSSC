@@ -33,3 +33,5 @@ git:
   branch: master
 category_archive:
   slugify: true
+plugins:
+  - jekyll-seo-tag
