@@ -230,11 +230,14 @@ p, li{
     padding-right: 0px;
     vertical-align: baseline;
 }
+ol {
+  list-style-position: inside;
+}
 // Since there is no grid here, lists and pre-formatted code break if they are too long.
 // Necessary to specify that any list within an article is the same width as
 // the paragraphs
 
-p, article > ul, pre code, pre code p, code{
+p, article > ol, ul, pre code, pre code p, code{
   width: 60%;
 }
 @media screen and (max-width: 600px){
@@ -285,7 +288,7 @@ sub { top: 0.2rem; }
   width: 50%;
   margin-top: 0rem;
   margin-bottom: 1.96rem;
-  font-size: 1.0rem;
+  font-size: 1.1rem;
   line-height: 1.96;
   vertical-align: baseline;
   position: relative;
@@ -608,8 +611,11 @@ nav.group a {
 div.mathblock {
   width: 60%;
 }
-span.mrow {
-  font-size: 1.3rem;
+.MathJax{
+  font-size: 1.3em;
+}
+.MathJax_Display{
+  font-size: 1.4em;
 }
 .mathjax-tooltip {
   display: none;
