@@ -54,9 +54,31 @@
     {% endfor %}
   {% endif %}
 
+  <!-- Load jQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <!-- Load up MathJax script if needed ... specify in /_data/options.yml file-->
   {% if site.data.options.mathjax %}
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        showProcessingMessages: false,
+        messageStyle: 'none',
+        tex2jax: {
+          inlineMath: [['$','$']],
+          displayMath: [['$$','$$']],
+          processEnvironments: false
+        },
+        // show equation numbers
+        TeX: {
+          equationNumbers: {
+            autoNumber: "AMS"
+          }
+        },
+        'HTML-CSS': {
+          imageFont: null
+        }
+      });
+    </script>
   {% endif %}
 
   <link rel="stylesheet" type="text/css" href="{{ "/css/tufte.css" | prepend: site.baseurl }}">
@@ -64,5 +86,5 @@
 
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" />
+  <!-- <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" /> -->
 </head>

@@ -605,7 +605,21 @@ nav.group a {
 .main-column-img {
   margin-top: 20px;
 }
-
+div.mathblock {
+  width: 60%;
+}
+span.mrow {
+  font-size: 1.3rem;
+}
+.mathjax-tooltip {
+  display: none;
+  width: 55%;
+  max-width: 900px;
+  margin-left: 8.4%;
+  position: absolute;
+  z-index: 20;
+  background-color: #fff;
+}
 /* Style for table of contents */
 #markdown-toc {
   list-style-position: inside;

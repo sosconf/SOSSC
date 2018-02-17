@@ -13,7 +13,8 @@ module Jekyll
     end
 
     def render(context)
-      "<span class='marginnote'><img class='#{@text[0]}' src='#{@text[1]}'/><br />#{@text[2]}</span>"
+      baseurl = context.registers[:site].config['baseurl']
+      "<span class='marginnote'><img class='#{@text[0]}' src='#{baseurl}/#{@text[1]}'/><br />#{@text[2]}</span>"
     end
   end
 end
