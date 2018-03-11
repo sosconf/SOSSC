@@ -636,3 +636,15 @@ div.mathblock {
 #markdown-toc li {
   list-style: none;
 }
+
+@media screen and (max-width: 430px) {
+  nav a{
+    margin-left: 0 !important;
+  }
+  nav.group {
+    padding: 1rem 1rem 0.5rem 0 !important;
+  }
+  p {
+    width:90%;
+  }
+}
