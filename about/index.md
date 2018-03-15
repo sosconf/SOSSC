@@ -18,3 +18,6 @@ Email: [alex.xiong.tech at gmail dot com](mailto:alex.xiong.tech@gmail.com)
 | Twitter: [@ALuoyuan](https://twitter.com/ALuoyuan)
 
 LinkedIn: [@AlexXiong](https://www.linkedin.com/in/luoyuanxiong/)
+
+## Talk
+- **The Absolute Minimum You Should Know About Blockchain, No Excuse**, [Blockchain@NTU Singapore](https://www.facebook.com/NTUBlockchain/) *Demystifying Blockchain Workshop Series*, March 2018 [(slides)]({{"/assets/docs/Demystifying_Blockchain.pdf" | absolute_url}})
