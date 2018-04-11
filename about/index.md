@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: page-with-bio
 title: About Me
 ---
 Luoyuan Alex Xiong is an undergraduate student studying _Electrical and Electronic Engineering_ at NTU Singapore. I work on applied cryptography, blockchain and computer security.
@@ -21,3 +21,4 @@ LinkedIn: [@AlexXiong](https://www.linkedin.com/in/luoyuanxiong/)
 
 ## Talk
 - **The Absolute Minimum You Should Know About Blockchain, No Excuse**, [Blockchain@NTU Singapore](https://www.facebook.com/NTUBlockchain/) *Demystifying Blockchain Workshop Series*, March 2018 [(slides)]({{"/assets/docs/Demystifying_Blockchain.pdf" | absolute_url}})
+- **Building &#272;App, Yo! -- Smart Contract Development**, [Blockchain@NTU Singapore](https://www.facebook.com/NTUBlockchain/) *Demystifying Blockchain Workshop Series*, April 2018 [(slides)]({{"/assets/docs/smart_contract_dev.pdf" | absolute_url}})
