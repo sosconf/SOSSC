@@ -1,5 +1,30 @@
-#!/usr/bin/env bash
-set -e # halt script on error
+#!/usr/bin/env ruby
 
-bundle exec jekyll build
-bundle exec htmlproofer --http-status-ignore "999, 401" ./_site
+require "html-proofer"
+
+# add links to ignore here
+url_ignores = [
+  # Installation links require being signed in to GitHub
+  %r{https://github.com/apps/.*/installations/new},
+  "https://mochajs.org/",
+  %r{mit-license\.org}, # misconfigured SSL or old certs on Travis CI?
+  %r{https://localhost:*/*}, # Ignore links to localhost in documentation
+]
+
+begin
+  HTMLProofer::Runner.new(["_site"],
+    :type => :directory,
+    :url_ignore => url_ignores,
+    :verbose => !!ENV["VERBOSE"],
+    :check_html => true,
+    :empty_alt_ignore => true,
+    :typhoeus => {
+      # Work around SSL errors: https://github.com/gjtorikian/html-proofer/issues/376
+      :ssl_verifypeer => false,
+      :ssl_verifyhost => 0
+    }
+  ).run
+rescue => e
+  puts "\n", e
+  exit 1
+end
