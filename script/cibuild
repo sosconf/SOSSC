@@ -9,10 +9,10 @@ require 'jekyll'
 require 'html-proofer'
 
 Jekyll::Site.new(Jekyll.configuration({
-    "source"      => ".",
+    "source"      => "../",
     "destination" => "_site"
   })).process
-  
+
 # Check missing img, wrong external and internal links.
 HTMLProofer.check_directory("../_site", {
   :empty_alt_ignore => true,
