@@ -1,7 +1,8 @@
 html, body {
   height:100%;
-  padding: 0px 2px;
-  margin: 10px 0px 0px 0px;
+  width: 100%;
+  padding: 0px 0px;
+  margin: 0px;
 }
 
 @font-face {
@@ -45,6 +46,14 @@ body {
   margin-top: 90px;
   font-family: ETBembo;
   width: 100%;
+}
+
+.brief {
+  display: none;
+}
+
+.seo-elements {
+  display: none !important;
 }
 
 a {
@@ -134,35 +143,21 @@ a:hover {
   }
 }
 
-@media screen and (max-width: 600px) {
-  body {
-    /*background-position: bottom center;*/
-  }
+@media screen and (max-width: 670px) {
   #dialog {
-    position: relative;
-    left: 20px;
+    margin-left: 8px;
+    margin-right: 8px;
+    top: 8% !important;
+    left: 5% !important;
   }
-}
-
-@media screen and (max-width: 430px) {
-  #i {
-    /*display: none;*/
-    margin-top: 30px;
+  .extensive {
+    display: none;
   }
-  #p2 {
-    margin-top: 60%;
+  .brief {
+    display: block;
   }
-}
-
-@media screen and (max-height: 640px) {
   #hey {
     font-size: 3em;
-  }
-}
-
-@media screen and (max-height: 535px) {
-  #p1 {
-    /*display: none;*/
   }
 }
 
@@ -179,10 +174,16 @@ a:hover {
   body {
     /*background-position: right;*/
   }
-  #p1 {
+  .extensive {
     display: none;
   }
-  #p2 {
-    margin-top: 30px;
+  #hey {
+    font-size: 2em;
+  }
+  #p3 {
+    margin-top:-30px;
+  }
+  #button {
+    font-size: 20px;
   }
 }
