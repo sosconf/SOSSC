@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-
 require "html-proofer"
 
 # add links to ignore here
