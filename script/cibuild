@@ -1,20 +1,5 @@
-#!/usr/bin/env ruby
-require 'rubygems'
-require 'rake'
-require 'rdoc'
-require 'date'
-require 'yaml'
-require 'tmpdir'
-require 'jekyll'
-require 'html-proofer'
+#!/usr/bin/env bash
+set -e # halt script on error
 
-Jekyll::Site.new(Jekyll.configuration({
-    "source"      => "../",
-    "destination" => "_site"
-  })).process
-
-# Check missing img, wrong external and internal links.
-HTMLProofer.check_directory("../_site", {
-  :empty_alt_ignore => true,
-  :http_status_ignore => [999]
-  }).run
+bundle exec jekyll build
+bundle exec htmlproofer --http-status-ignore "999, 401" ./_site
