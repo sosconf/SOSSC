@@ -6,6 +6,7 @@ before_script:
 # Assume bundler is being used, therefore
 # the `install` step will run `bundle install` by default.
 install: gem install bundler jekyll html-proofer
+before_script: jekyll build
 script: ./script/cibuild
 branches:
   only:
