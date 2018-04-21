@@ -21,7 +21,7 @@ excerpt_separator: <!--more-->
 future: true
 permalink: /:categories/:title/
 # Exclude from processing.
-exclude: ['Gemfile', 'Gemfile.lock', 'Rakefile', 'README.md']
+exclude: ['Gemfile', 'Gemfile.lock', 'Rakefile', 'README.md', vendor]
 post:
   template: _post.txt
   extension: md

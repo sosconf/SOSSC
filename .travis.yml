@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  -2.3
+  - 2.3
 before_script:
   - chmod +x ./script/cibuild
 # Assume bundler is being used, therefore
@@ -13,4 +13,3 @@ env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
 sudo: false # route your build to the container-based infrastructure for a faster build
-exclude: [vendor]
