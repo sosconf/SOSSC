@@ -56,14 +56,6 @@ body {
   display: none !important;
 }
 
-div[itemscope] {
-  display: none;
-}
-
-#itemscope {
-  display: none;
-}
-
 a {
   color: #D5DBDB;
   text-decoration: none;

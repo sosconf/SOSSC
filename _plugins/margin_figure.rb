@@ -14,7 +14,7 @@ module Jekyll
 
     def render(context)
       baseurl = context.registers[:site].config['baseurl']
-      "<span class='marginnote'><img class='#{@text[0]}' src='#{baseurl}/#{@text[1]}' alt='missing img' /><br />#{@text[2]}</span>"
+      "<span class='marginnote'><img class='#{@text[0]}' src='#{baseurl}/#{@text[1]}'/><br />#{@text[2]}</span>"
     end
   end
 end

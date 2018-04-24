@@ -4,6 +4,7 @@ require "html-proofer"
 # add links to ignore here
 url_ignores = [
   %r{https://localhost:*/*}, # Ignore links to localhost in documentation
+  %r{https://*ncl.sg/*},
 ]
 
 begin
@@ -13,6 +14,7 @@ begin
     :verbose => !!ENV["VERBOSE"],
     :check_html => true,
     :empty_alt_ignore => true,
+    :http_status_ignore => [999],
     :typhoeus => {
       # Work around SSL errors: https://github.com/gjtorikian/html-proofer/issues/376
       :ssl_verifypeer => false,
