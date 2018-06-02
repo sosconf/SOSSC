@@ -4,7 +4,7 @@ subtitle: a blog of Alex Xiong
 email: veralexxiong@outlook.com
 author: Luoyuan Alex Xiong
 description: >-
-  This is a collection of my thoughts, works and blog posts.
+  Website/Blog of Alex Luoyuan xiong, a blockchain developer and a cryptography lover.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: ALuoyuan
@@ -22,12 +22,6 @@ future: true
 permalink: /:categories/:title/
 # Exclude from processing.
 exclude: ['Gemfile', 'Gemfile.lock', 'Rakefile', 'README.md', vendor]
-post:
-  template: _post.txt
-  extension: md
-page:
-  template: _page.txt
-  extension: md
 editor: gvim
 git:
   branch: master

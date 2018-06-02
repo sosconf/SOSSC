@@ -2,3 +2,53 @@
 layout: page
 title: Project
 ---
+{% include base.html %}
+<p class="subtitle">Not code junkie, opposite.</p>
+<ul class="content">
+  {% for post in site.pages %}
+    {% if post.categories contains "project" %}
+    <li class="listing">
+      <a href="{{base }}{{ post.url }}"><h4 class="contrast">{{ post.title }}</h4></a>
+      <span class="github-hooks" style="float:left;">
+        <a href="https://github.com/ConsenSys/bytecode-verifier"></a>
+      </span>
+      </br>
+    	{{ post.summary }}
+    </li>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+<script type="text/javascript">
+(function() {
+  'use strict';
+  var gitLinks = $("a[href*='github.com']");
+  console.log(gitLinks.length + ' git links');
+  gitLinks.each(function(){
+      var a = $(this);
+      var link = a.attr('href');
+      var re = /github.com\/([^\/]+)\/([^\/]+)\/?/;
+      var matches = link.match(re);
+      if (!matches || matches.length<3) {
+          return;
+      }
+      var user = matches[1]||'stars';
+      var repo = matches[2]||'badges';
+      var star_shield = 'https://img.shields.io/github/stars/'+user+'/'+repo+'.svg?style=social&label=Stars';
+      var fork_shield = 'https://img.shields.io/github/forks/'+user+'/'+repo+'.svg?style=social&label=Fork';
+
+      var star_badge = document.createElement('img');
+      star_badge.style.margin = '0 0 0 0px';
+      star_badge.style.padding = '0';
+      star_badge.src = star_shield;
+      star_badge.minheight = 20;
+      $(star_badge).appendTo(a);
+
+      var fork_badge = document.createElement('img');
+      fork_badge.style.margin = '0px 10px 0 8px';
+      fork_badge.src = fork_shield;
+      fork_badge.minheight = 20;
+      $(fork_badge).appendTo(a);
+  });
+})();
+</script>
