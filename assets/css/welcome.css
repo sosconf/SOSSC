@@ -11,45 +11,41 @@ html, body {
 
 
 body {
-    background-image: linear-gradient(to bottom, #021e42 0%,#0d426b 100%,#F8F8F6 0%,#f8f8f6 100%);
     background-size: auto 100%;
     background-repeat: no-repeat;
-    background-position: top left;
-    background-attachment: fixed;
-    background-color: #f8f8f6;
+    background-color: #000;
     font-family: ETBembo;
+    opacity: 0.95;
 }
-
 #dialog {
   position: absolute;
-  left: 10%;
+  left: 20%;
+  right: 20%;
   top: 15%;
   color: #fff;
 }
 
 #hey {
+  color: #FFF8E7;
   font-weight: bold;
   font-size: 5em;
   font-family: Helvetica;
 }
 
+.type-it{
+  color: #FFF8E7;
+}
+
 #i {
   font-size: 2em;
   margin-top: 75px;
-  /*font-family: Helvetica;*/
-}
-#p1 {
-  height: 1px;
+  color: #FFF8E7;
 }
 
 #p2 {
-  margin-top: 90px;
+  margin-top: 20px;
   font-family: ETBembo;
   width: 100%;
-}
-
-.brief {
-  display: none;
 }
 
 .seo-elements {
@@ -57,7 +53,7 @@ body {
 }
 
 a {
-  color: #D5DBDB;
+  color: #FFF8E7;
   text-decoration: none;
   font-weight: bold;
 }
@@ -71,10 +67,11 @@ a:hover {
   /*position: absolute;
   bottom: 0px;*/
   margin-top: 50px;
+  margin-bottom: 50px
 }
 
 #links ul a {
-  color: #F9E79F;
+  /* color: #F9E79F; */
   text-decoration: none;
   font-weight: bold;
 }
@@ -137,33 +134,38 @@ a:hover {
     }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 800px) {
   #links ul {
     display: none;
   }
 }
 
 @media screen and (max-width: 670px) {
-  #dialog {
-    margin-left: 8px;
-    margin-right: 8px;
-    top: 8% !important;
-    left: 5% !important;
-  }
   .extensive {
     display: none;
   }
-  .brief {
-    display: block;
+  .ti-container {
+    font-size: 1em !important;
   }
   #hey {
-    font-size: 3em;
+    font-size: 2em;
+  }
+  #links{
+    position: fixed;
+    bottom: 40px;
+  }
+  #i{
+    font-size: 1.5em;
+  }
+  #dialog{
+    left: 10% !important;
+    right: 10% !important;
   }
 }
 
-@media screen and (max-height: 440px) {
+/* @media screen and (max-height: 440px) {
   #hey {
-    font-size: 2em;
+    font-size: 1em;
   }
   #i, #p2 {
     margin-top: 0px;
@@ -172,7 +174,7 @@ a:hover {
 
 @media screen and (height: 568px) and (width: 320px) {
   body {
-    /*background-position: right;*/
+
   }
   .extensive {
     display: none;
@@ -186,4 +188,4 @@ a:hover {
   #button {
     font-size: 20px;
   }
-}
+} */
