@@ -12,6 +12,8 @@ The most fulfilling part about computer security for me is knowing how things wo
 
 I wish to contribute to a world where technologies are more __open-sourced__, power and decision making are more __decentralized__, __self-motivated__ learning outside the “rewarding system” is more genuinely valued.
 
+[Resum&#233; Available](../assets/docs/resume.pdf) <small>({%m%}\rm\LaTeX{%em%} source code [here](https://github.com/AlexXiong97/resume))</small>
+
 ## Contact
 Email: [alex.xiong.tech at gmail dot com](mailto:alex.xiong.tech@gmail.com)
 | Keybase: [@alexxiong97](https://keybase.io/alexxiong97)
