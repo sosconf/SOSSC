@@ -726,34 +726,14 @@ hr.slender {
 div.mathblock {
   width: 60%;
 }
-// .MathJax{
-//   font-size: 1.3em;
-// }
-// .MathJax_Display{
-//   font-size: 1.4em;
-// }
-// .mathjax-tooltip {
-//   display: none;
-//   width: 55%;
-//   max-width: 900px;
-//   margin-left: 8.4%;
-//   position: absolute;
-//   z-index: 20;
-//   background-color: #fff;
-// }
+
 /* Style for table of contents */
 #markdown-toc {
   list-style-position: inside;
-  margin-left: 30px;
-  margin-bottom: 30px;
+  margin-left: 2em;
+  margin-bottom: 2em;
 }
 
 #markdown-toc li {
   list-style: none;
 }
-//
-// @media screen and (max-width: 430px) {
-//   p {
-//     width:90%;
-//   }
-// }

@@ -67,7 +67,30 @@
     width: 56px;
     height: 56px;
 }
-
+@media screen and (max-width: 1300px){
+  .material-scrolltop.reveal {
+      width: 52px;
+      height: 52px;
+  }
+}
+@media screen and (max-width: 960px){
+  .material-scrolltop.reveal {
+      width: 46px;
+      height: 46px;
+  }
+}
+@media screen and (max-width: 600px){
+  .material-scrolltop.reveal {
+      width: 40px;
+      height: 40px;
+  }
+}
+@media screen and (max-width: 450px){
+  .material-scrolltop.reveal {
+      width: 34px;
+      height: 34px;
+  }
+}
 .material-scrolltop span {
     display: block;
     font-size: 25px;
