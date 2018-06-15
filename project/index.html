@@ -8,13 +8,20 @@ title: Project
   {% for post in site.pages %}
     {% if post.categories contains "project" %}
     <li class="listing">
+      {% if post.details == false %}
+      <a href={{post.github-page}}><h4 class="contrast">{{ post.title }}</h4></a>
+      {% else %}
       <a href="{{base }}{{ post.url }}"><h4 class="contrast">{{ post.title }}</h4></a>
-      <span class="github-hooks" style="float:left;">
-        <a href="https://github.com/ConsenSys/bytecode-verifier"></a>
-      </span>
-      </br>
-    	{{ post.summary }}
+      {%  endif %}
+
+      <p class="github-hooks">
+        <a href={{post.github-page}} class="github-badge"></a>
+      </p>
+      <div class="listing-summary">
+        {{ post.summary }}
+      </div>
     </li>
+    <hr class="slender">
     {% endif %}
   {% endfor %}
 </ul>
@@ -22,7 +29,7 @@ title: Project
 <script type="text/javascript">
 (function() {
   'use strict';
-  var gitLinks = $("a[href*='github.com']");
+  var gitLinks = $("a[href*='github.com'][class*='github-badge']");
   console.log(gitLinks.length + ' git links');
   gitLinks.each(function(){
       var a = $(this);

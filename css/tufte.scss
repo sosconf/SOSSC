@@ -164,9 +164,6 @@ a, .marginnote a, .sidenote a{
   border-bottom-width: 1px;
   border-bottom-style: dotted;
 }
-ul.content{
-  list-style: none;
-}
 img { max-width: 100%; }
 
 @media screen and (max-width: 600px){
@@ -206,7 +203,7 @@ h3 { font-style: italic;
 
 h4 {  font-style: italic;
       font-weight: 400;
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       margin-top: 2.45rem;
       margin-bottom: 0;
       line-height: 1.225; }
@@ -248,7 +245,7 @@ p .subtitle { font-style: italic;
              line-height: 1.08888888888889; }
 
 
-p, ol, ul { font-size: 1.4rem; }
+p, ol, ul { font-size: 1.3rem; }
 
 p, li { line-height: 2rem;
         margin-top: 1.4rem;
@@ -339,10 +336,17 @@ section { padding-top: 1rem;
           padding-bottom: 1rem; }
 
 
-ul,ol { width: 45%;
+ul.content, ol.content { width: 45%;
      -webkit-padding-start: 5%;
      -webkit-padding-end: 5%;
+     -moz-padding-start: 5%;
+     -moz-padding-end: 5%;
      list-style-position: inside;
+}
+ul, ol{
+  width: 45%;
+  list-style-position: inside;
+  padding-left: 1.5em;
 }
 
 /* LaTeX-logo-specific styling */
@@ -531,6 +535,9 @@ label.margin-toggle:not(.sidenote-number) { display: none; }
 }
 
 //Full width page styling stuff
+.content > ol, ul{
+  list-style-type: none;
+}
 
 body.full-width, .content-listing, ul.content-listing li.listing{ width: 90%;
        margin-left: auto;
@@ -583,6 +590,9 @@ hr.slender {
     background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
     background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
     background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+}
+.listing .listing-summary{
+  margin-top: 1em;
 }
 // End of front listing page stuff
 
@@ -727,6 +737,14 @@ div.mathblock {
   width: 60%;
 }
 
+.github-hooks {
+  margin-top: -0.8em;
+  line-height: 1em;
+}
+.github-hooks a {
+  border: none;
+  background: none;
+}
 /* Style for table of contents */
 #markdown-toc {
   list-style-position: inside;
