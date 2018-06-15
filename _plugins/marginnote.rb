@@ -15,4 +15,3 @@ module Jekyll
 end
 
 Liquid::Template.register_tag('marginnote', Jekyll::RenderMarginNoteTag)
-

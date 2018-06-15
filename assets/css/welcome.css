@@ -162,30 +162,3 @@ a:hover {
     right: 10% !important;
   }
 }
-
-/* @media screen and (max-height: 440px) {
-  #hey {
-    font-size: 1em;
-  }
-  #i, #p2 {
-    margin-top: 0px;
-  }
-}
-
-@media screen and (height: 568px) and (width: 320px) {
-  body {
-
-  }
-  .extensive {
-    display: none;
-  }
-  #hey {
-    font-size: 2em;
-  }
-  #p3 {
-    margin-top:-30px;
-  }
-  #button {
-    font-size: 20px;
-  }
-} */

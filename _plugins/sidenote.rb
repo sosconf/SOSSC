@@ -1,3 +1,4 @@
+
 module Jekyll
   class RenderSideNoteTag < Liquid::Tag
 
@@ -9,7 +10,7 @@ module Jekyll
     end
 
     def render(context)
-      "<sup class='sidenote-number'>#{@text[0]}</sup><span class='sidenote'><sup class='sidenote-number'>#{@text[0]}</sup> #{@text[1]}</span>"
+      "<label for='#{@text[0]}' class='margin-toggle sidenote-number'></label><input type='checkbox' id='#{@text[0]}' class='margin-toggle'/><span class='sidenote'>#{@text[1]} </span>"
     end
   end
 end
