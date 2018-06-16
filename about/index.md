@@ -22,5 +22,5 @@ Email: [alex.xiong.tech at gmail dot com](mailto:alex.xiong.tech@gmail.com)
 LinkedIn: [@AlexXiong](https://www.linkedin.com/in/luoyuanxiong/)
 
 ## Talk
-- **The Absolute Minimum You Should Know About Blockchain, No Excuse**, [Blockchain@NTU Singapore](https://www.facebook.com/NTUBlockchain/) *Demystifying Blockchain Workshop Series*, March 2018 [(slides)]({{"/assets/docs/Demystifying_Blockchain.pdf" | absolute_url}})
-- **Building &#272;App, Yo! -- Smart Contract Development**, [Blockchain@NTU Singapore](https://www.facebook.com/NTUBlockchain/) *Demystifying Blockchain Workshop Series*, April 2018 [(slides)]({{"/assets/docs/smart_contract_dev.pdf" | absolute_url}})
+- **The Absolute Minimum You Should Know About Blockchain, No Excuse**, [Blockchain@NTU Singapore](https://www.facebook.com/NTUBlockchain/) *Demystifying Blockchain Workshop Series*, March 2018 [(slides)](../assets/docs/Demystifying_Blockchain.pdf)
+- **Building &#272;App, Yo! -- Smart Contract Development**, [Blockchain@NTU Singapore](https://www.facebook.com/NTUBlockchain/) *Demystifying Blockchain Workshop Series*, April 2018 [(slides)](../assets/docs/smart_contract_dev.pdf)
