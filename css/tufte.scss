@@ -372,8 +372,8 @@ figcaption { float: right;
              vertical-align: baseline;
              position: relative;
              max-width: 40%; }
-
-figure.fullwidth figcaption { float: left; margin-right: 0%; margin-left: 36%; }
+figure.fullwidth{ margin-top: 1em; }
+figure.fullwidth figcaption { float: left; margin-right: 0%; margin-left: 36%;}
 
 img { max-width: 100%; }
 
