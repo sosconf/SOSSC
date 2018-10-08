@@ -1,5 +1,6 @@
 ---
 layout: page-with-bio
+permalink: /about
 title: About Me
 ---
 Alex Luoyuan Xiong is an undergraduate student studying _Electrical and Electronic Engineering_ at NTU Singapore. I work on applied cryptography, blockchain and computer security.

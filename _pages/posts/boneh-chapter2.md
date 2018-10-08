@@ -1,5 +1,6 @@
 ---
 layout: post
+permalink: /blog/boneh-crypto-book-chapter2/
 title: "Chapter 2: Encryption"
 date: 2018-01-28 13:06:04
 categories: blog appliedcryptography

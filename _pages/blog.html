@@ -1,0 +1,23 @@
+---
+layout: page
+permalink: /blog
+title: Blog Post
+---
+
+{% include base.html %}
+<p class="subtitle">This is a partial collection of my ideas, notes and blog posts.</p>
+<ul class="content">
+  {% assign sorted_posts = site.pages | sort:'date' | reverse %}
+    {% for post in sorted_posts %}
+      {% if post.layout == 'post' %}
+        <li class="listing">
+          <a href="{{base }}{{ post.url }}"><h4 class="contrast">{{ post.title }}</h4></a>
+          <span class="smaller">{{ post.date | date: "%B %-d, %Y" }}</span><br>
+          <div class="listing-summary">
+            {{ post.summary }}
+          </div>
+        </li>
+        <hr class="slender">
+      {% endif %}
+  {% endfor %}
+</ul>

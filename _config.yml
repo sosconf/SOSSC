@@ -19,22 +19,26 @@ highligher: rouge
 timezone: Asia/Singapore
 excerpt_separator: <!--more-->
 future: true
-permalink: /:categories/:title/
-post:
-  template: _post.txt
-  extension: md
-page:
-  template: _page.txt
-  extension: md
-project:
-  template: _project.txt
-  extension: md
 # Exclude from processing.
 exclude: ['Gemfile', 'Gemfile.lock', 'Rakefile', 'README.md', vendor]
-editor: gvim
-git:
-  branch: master
-category_archive:
-  slugify: true
 plugins:
   - jekyll-seo-tag
+sass:
+  load_paths:
+    - _sass
+    - css
+    - node_modules
+  style: compressed
+exclude:
+  - node_modules
+  - README.md
+  - LICENSE.md
+  - CNAME
+  - Gemfile
+  - Gemfile.lock
+  - package.json
+  - script
+  - spec
+  - vendor
+include:
+  - _pages

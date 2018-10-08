@@ -1,5 +1,6 @@
 ---
 layout: project
+permalink: /project/boneh-crypto-book
 title: Dan Boneh Crypto Book Consumption <small>(<u>ongoing</u>)</small>
 categories: project, crypto
 keywords: crypto, academic
@@ -23,7 +24,7 @@ What these posts **are**:
 
 ## IAQ (Infrequently Asked Questions)
 ### Why did I stop providing all attempted solutions?
-As some may or may not notice, only [Chapter 2: Encryption](https://alexxiong.xyz/blog/appliedcryptography/Chapter2/) post had all the attempted answers, while the rest only "cherry-picked" on a few. The (non-alternative) fact is that I started out planning to upload all my attempted solutions, in the hope that it will serve as a (non-official) reference for future readers, but decided otherwise after finishing the first post. Before I was given a guilty verdict, here are the rationales for such gear-shifting:
+As some may or may not notice, only [Chapter 2: Encryption](https://alexxiong.xyz//blog/boneh-crypto-book-chapter2/) post had all the attempted answers, while the rest only "cherry-picked" on a few. The (non-alternative) fact is that I started out planning to upload all my attempted solutions, in the hope that it will serve as a (non-official) reference for future readers, but decided otherwise after finishing the first post. Before I was given a guilty verdict, here are the rationales for such gear-shifting:
 1. There had already been an official solution reference.{%sidenote "1" "Please directly approach the authors for the solutions, the existence of such reference was not known to me until an email exchange with Prof. Boneh after I finished the first 3 chapters."%}
 2. There are schools that may take some of those questions in their tests/exams.
 3. I'd figure: better provide content that provides with some extra value added. (e.g. code sample for letter frequency attack, check list for key concepts for future review, personal digests on tricky or intricate logic to minimize head-scratching for readers.)
