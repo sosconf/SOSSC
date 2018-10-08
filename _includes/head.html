@@ -80,11 +80,9 @@
       });
     </script>
   {% endif %}
-  {% if page.layout == 'post' %}
-    <!-- Loading scrollTop js -->
-    <script type="text/javascript" src="{{base}}/assets/js/material-scrolltop.js"></script>
-    <link rel="stylesheet" href="{{base}}/assets/css/material-scrolltop.css">
-  {% endif %}
+  <!-- Loading scrollTop js -->
+  <script type="text/javascript" src="{{base}}/assets/js/material-scrolltop.js"></script>
+  <link rel="stylesheet" href="{{base}}/assets/css/material-scrolltop.css">
   <link rel="stylesheet" type="text/css" href="{{ "/css/tufte.css" | prepend: site.baseurl }}">
   <link rel="stylesheet" type="text/css" href="{{ "/css/print.css" | prepend: site.baseurl }}" media="print">
 
