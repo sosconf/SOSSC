@@ -39,9 +39,9 @@
     <meta content="https://facebook/alex.luoyuan" property="article:author">
   {% endif %}
   {% if page.image %}
-    <meta content="{{ base }}/assets/img/{{ page.image }}" property="og:image">
+    <meta content="{{ site.baseurl }}/assets/img/{{ page.image }}" property="og:image">
   {% else %}
-    <meta content="{{ base }}/assets/img/alex.jpg" property="og:image">
+    <meta content="{{ site.baseurl }}/assets/img/alex.jpg" property="og:image">
   {% endif %}
   {% if page.categories %}
     {% for category in page.categories limit:10 %}
@@ -81,8 +81,8 @@
     </script>
   {% endif %}
   <!-- Loading scrollTop js -->
-  <script type="text/javascript" src="{{base}}/assets/js/material-scrolltop.js"></script>
-  <link rel="stylesheet" href="{{base}}/assets/css/material-scrolltop.css">
+  <script type="text/javascript" src="{{site.baseurl}}/assets/js/material-scrolltop.js"></script>
+  <link rel="stylesheet" href="{{site.baseurl}}/assets/css/material-scrolltop.css">
   <link rel="stylesheet" type="text/css" href="{{ "/css/tufte.css" | prepend: site.baseurl }}">
   <link rel="stylesheet" type="text/css" href="{{ "/css/print.css" | prepend: site.baseurl }}" media="print">
 
@@ -91,6 +91,6 @@
   <!-- <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" /> -->
 
   <!-- Loading anchorjs -->
-  <script type="text/javascript"src="{{base}}/assets/js/anchor.min.js"></script>
+  <script type="text/javascript"src="{{site.baseurl}}/assets/js/anchor.min.js"></script>
   {% seo %}
 </head>

@@ -1,144 +1,25 @@
 ---
 title: Page Not Found
 permalink: /404.html
-excerpt: ""
 ---
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>Semantic Crypto</title>
-  <meta name="description" content="This is a collection of my thoughts, works and blog posts.">
-
-  <link rel="me" href="https://twitter.com/ALuoyuan" />
-  <link rel="me" href="https://github.com/AlexXiong97" />
-  <link rel="me" href="https://facebook.com/alex.luoyuan" />
-
-  <!-- Google Fonts loaded here depending on setting in _data/options.yml true loads font, blank does not-->
-
-    <link href='//fonts.googleapis.com/css?family=Lato:400,400italic' rel='stylesheet' type='text/css'>
-
-
-  <meta content="Semantic Crypto" property="og:site_name">
-
-    <meta content="Semantic Crypto" property="og:title">
-
-
-
-    <meta content="website" property="og:type">
-
-
-
-
-    <meta content="../404.html" property="og:url">
-
-
-
-
-    <meta content="../assets/img/alex.jpg" property="og:image">
-
-
-
-
-  <!-- Load up MathJax script if needed ... specify in /_data/options.yml file-->
-
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-
-  <link rel="stylesheet" type="text/css" href="/css/tufte.css">
-  <!-- <link rel="stylesheet" type="text/css" href="/css/print.css" media="print"> -->
-
-  <link rel="canonical" href="/404.html">
-
-  <link rel="alternate" type="application/rss+xml" title="Semantic Crypto" href="/feed.xml" />
-</head>
-
+  {% include head.html %}
+  <style>
+    h1 {
+      font-size: 4em;
+      font-weight: 500;
+      margin: 0;
+    }
+  </style>
   <body>
-    <!--- Header and nav template site-wide -->
-<header>
-  <nav class="group">
-    <a href="/" id='nav_home'>Home</a>
-    <a href="/blog" id='nav_blog'>Blog</a>
-    <a href="/project" id='nav_project'>Project</a>
-    <a href="/about" id='nav_about'>About me</a>
-  </nav>
-</header>
-<!-- <script type="text/javascript">
-  let url = /404.html.toString();
-  if (url.startsWith('/blog')) {
-    document.querySelector('#nav_blog').className = 'active';
-  } else if (url.startsWith('/project')) {
-    document.querySelector('#nav_project').className = 'active';
-  } else if (url.startsWith('/about')) {
-    document.querySelector('#nav_about').className = 'active';
-  }
-</script> -->
-
-    <article>
-      <style type="text/css" media="screen">
-  .container {
-    margin: 10px auto;
-    max-width: 600px;
-    text-align: center;
-    font-family: "Gill Sans", "Gill Sans MT", "Lato", Calibri, sans-serif;
-  }
-  h1 {
-    margin: 30px 0;
-    font-size: 4em;
-    line-height: 1;
-    letter-spacing: -1px;
-  }
-  p.full-width-p {
-    margin-left: 0%;
-    width: 100%;
-    font-size: 3em;
-  }
-</style>
-
-<div class="container">
-  <img src="/assets/img/404.png" style="border-radius:15px" alt="404">
-
-  <p class="full-width-p"><strong>"Oops... Nobody is here!" </strong></p>
-  <img src="/assets/img/knock-knock.jpg" class="404-img" alt="No Page Found">
-</div>
-
-    </article>
-    <span class="print-footer"> - Luoyuan Alex Xiong</span>
-    <!-- <footer>
-  <hr class="slender">
-  <ul class="footer-links">
-    <li><a href="mailto:hate@spam.net"><span class="icon-mail"></span></a></li>
-
-      <li>
-        <a href="//www.twitter.com/twitter_handle"><span class="icon-twitter"></span></a>
-      </li>
-
-      <li>
-        <a href="//plus.google.com/+googlePlusName"><span class="icon-googleplus"></span></a>
-      </li>
-
-      <li>
-        <a href="//github.com/GithubHandle"><span class="icon-github"></span></a>
-      </li>
-
-      <li>
-        <a href="//www.flickr.com/photos/FlickrUserID"><span class="icon-flickr"></span></a>
-      </li>
-
-      <li>
-        <a href="/feed"><span class="icon-feed"></span></a>
-      </li>
-
-  </ul>
-<div class="credits">
-<span>&copy; 2018 &nbsp;&nbsp;LUOYUAN ALEX XIONG</span></br> <br>
-<span>This site created with the <a href="//github.com/clayh53/tufte-jekyll">Tufte theme for a blog of Alex Xiong </a> in <a href="//jekyllrb.com">Jekyll</a>.</span>
-</div>
-</footer> -->
-
+    {% include header.html %}
+    <section class='page-section error-page'>
+      <div class='container-narrow text-center'>
+        <h2>Room 404</h2>
+        <p class="lead">Oops... No one is here.</p><br />
+        <img src="{{site.baseurl}}/assets/img/knock-knock.jpg" class="404-img" alt="No Page Found">
+      </div>
+    </section>
   </body>
 </html>

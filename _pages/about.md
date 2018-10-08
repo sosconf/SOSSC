@@ -7,7 +7,7 @@ Alex Luoyuan Xiong is an undergraduate student studying _Electrical and Electron
 
 I enjoy thinking about the irrationalities in our conventional reasoning and maybe thence my craving and appreciation for contrarian disposition. In short, discovering things overlooked or misjudged interests me deeply, especially when I'm the one who took the wrong answer as "truth" for too long.
 
-I'm constantly fascinated by elegant cryptographic constructions.{% marginfigure  'fullwidth' 'assets/img/ring_sig.jpg' '<a href="https://en.wikipedia.org/wiki/Ring_signature">Ring Signature</a> based on Schnorr Signature was introduced to me during <a href="http://www.initc3.org/events/2017-07-13-IC3-Ethereum-Crypto-Boot-Camp-at-Cornell-University.html">IC3 BootCamp 2017</a> at <a>Cornell University</a>. <br> It is the first time I find math truly beautiful.'%} Currently devouring _A Graduate Course in Applied Cryptography_ {% sidenote 1 '[Boneh,D., Shoup,V.]' %} and _Foundations of Cryptography: Basic Tools_ {% sidenote 2 '[Oded Goldreich]' %}.
+I'm constantly fascinated by elegant cryptographic constructions.{% marginfigure  'fullwidth' 'assets/img/ring_sig.jpg' '<a href="https://en.wikipedia.org/wiki/Ring_signature">Ring Signature</a> based on Schnorr Signature was introduced to me during <a href="http://www.initc3.org/events/2017-07-13-IC3-Ethereum-Crypto-Boot-Camp-at-Cornell-University.html">IC3 BootCamp 2017</a> at <a>Cornell University</a>. <br> It was the first time I find math mind-blowingly powerful.'%} Currently devouring _A Graduate Course in Applied Cryptography_ {% sidenote 1 '[Boneh,D., Shoup,V.]' %} and _Foundations of Cryptography: Basic Tools_ {% sidenote 2 '[Oded Goldreich]' %}.
 
 The most fulfilling part about computer security for me is knowing how things work more fundamentally + telling people they are wrong when they claim their system is "secure".
 
@@ -29,5 +29,5 @@ LinkedIn: [@AlexXiong](https://www.linkedin.com/in/luoyuanxiong/)
 - **Blockchain Fundamental Course**<br /><small>[Blockchain@NTU](https://ntublockchain.org), Sept 18 </small>
 <br />-- <small>Lecture 1: [slide](https://bit.ly/bf2018-slide1) ; [video](https://bit.ly/bf2018-video1)</small>
 <br />-- <small>Lecture 2: [slide](https://bit.ly/bf2018-slide1) ; [video](https://bit.ly/bf2018-video2)</small>
-- **Gormos: A New Scalable Solution for DEX** <br />
+- **Gormos: A New Scalable Solution for Decentralized Exchanges** <br />
 <small>[IBM Research Singapore Lab](https://www.research.ibm.com/), Oct 18</small> ([slide](http://bit.ly/ibm18-gormos))

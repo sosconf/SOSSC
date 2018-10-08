@@ -1,6 +1,6 @@
 ---
 layout: post
-permalink: /blog/boneh-crypto-book-chapter3/
+permalink: /blog/boneh-crypto-book/chapter3/
 title: "Chapter 3: Stream Cipher"
 date: 2018-06-30 13:06:04
 categories: blog appliedcryptography

@@ -1,6 +1,6 @@
 ---
 layout: post
-permalink: /blog/boneh-crypto-book-chapter2/
+permalink: /blog/boneh-crypto-book/chapter2/
 title: "Chapter 2: Encryption"
 date: 2018-01-28 13:06:04
 categories: blog appliedcryptography
@@ -9,7 +9,6 @@ summary: "Attempted solutions of exercises in <u>Chapter 2</u>: primarily on def
 ---
 ## Abstract
  This post contains solutions to Exercises in Chapter 2{% sidenote 1 "A Graduate Course in Applied Cryptography [Boneh,D.,Shoup,V.]" %}, which primarily discuss basic concept/building blocks for cryptography study(e.g. Shannon cipher, Definition of Semantic Security, Attack game etc.). On top of that, we dive deeper on further implications and real-life applications motivated by these questions.
-
 
 ## 2.1 (multiplicative one-time pad)
 ### *Question*:
