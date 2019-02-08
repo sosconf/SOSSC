@@ -6,7 +6,7 @@ author: Luoyuan Alex Xiong
 description: >-
   Website/Blog of Alex Luoyuan xiong, a blockchain developer and a cryptography lover.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://alexxiong.xyz" # the base hostname & protocol for your site, e.g. http://example.com
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: ALuoyuan
 github_username:  AlexXiong97
 
@@ -42,3 +42,6 @@ exclude:
   - vendor
 include:
   - _pages
+cache:
+  directories:
+  - $TRAVIS_BUILD_DIR/tmp/.htmlproofer
