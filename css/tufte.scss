@@ -340,6 +340,7 @@ ul.content, ol.content {
      -webkit-padding-end: 5%;
      -moz-padding-start: 5%;
      -moz-padding-end: 5%;
+     margin-top: 2rem;
 }
 /* LaTeX-logo-specific styling */
 .latex sub, .latex sup { text-transform: uppercase; }
@@ -528,7 +529,7 @@ label.margin-toggle:not(.sidenote-number) { display: none; }
 
 //Full width page styling stuff
 .content > ol, ul{
-  list-style-type: none;
+  // list-style-type: none;
 }
 
 body.full-width, .content-listing, ul.content-listing li.listing{ width: 90%;
@@ -732,7 +733,7 @@ div.mathblock {
   margin-bottom: -1em;
 }
 .github-hooks {
-  margin-top: -0.8em;
+  margin-top: 0.5em;
   line-height: 1em;
 }
 .github-hooks a {
@@ -753,4 +754,10 @@ div.mathblock {
 a.anchorjs-link {
   background-color: inherit;
   border: none;
+}
+a.project-title {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.7rem;
+  margin-top: 3rem
 }

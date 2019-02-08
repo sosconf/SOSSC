@@ -1,0 +1,441 @@
+---
+layout: post
+permalink: /blog/boneh-crypto-book/chapter2/
+title: "Chapter 2: Encryption"
+date: 2018-01-28 13:06:04
+categories: blog appliedcryptography
+last_update: 2018-06-20
+summary: "Attempted solutions of exercises in <u>Chapter 2</u>: primarily on definition of cipher, semantic security, attack game, elementary wrapper, mathematical details and all very basic building blocks to reason about future cryptographic constructions."
+---
+## Abstract
+ This post contains solutions to Exercises in Chapter 2{% sidenote 1 "A Graduate Course in Applied Cryptography [Boneh,D.,Shoup,V.]" %}, which primarily discuss basic concept/building blocks for cryptography study(e.g. Shannon cipher, Definition of Semantic Security, Attack game etc.). On top of that, we dive deeper on further implications and real-life applications motivated by these questions.
+
+## 2.1 (multiplicative one-time pad)
+### *Question*:
+{% fullwidth "assets/img/Q2.1.png" "" %}
+
+### _Solution_:
+
+To prove *correctness*, it's trivial to notice: {% m %} D(k,\; E(k,m)) = k^{-1}\cdot k \cdot m\; mod\; p = m \; mod \; p{% em %}.
+
+To prove *perfect secrecy*, we need to use [Theorem 2.1](#theorem-21), intuitively, what we want to prove is: for a uniformly distributed and randomly selected {%m%}k \in \mathcal K{%em%}, and the probability across all possible ciphertext output is uniform.{% sidenote 2 'The "encryption" is a fair dad, giving each kid the same chance to show up, never playing favorites.' %} More formally, we try to show: For {% m %}k \xleftarrow[]{\text{R}} \mathcal K,\;  m_{0},m_{1}\in\mathcal M,\; c\in\mathcal C{% em %}
+{% math %}
+\begin{equation}
+	\label{eq:1}
+		Pr[\,E(k, m_{0})=c\,]\:=\:Pr[\,E(k,m_{1})=c\,]
+\end{equation}
+{% endmath %}
+Equation \eqref{eq:1} is equivalent to the following statement:
+{% math %}
+\begin{equation}
+	\label{eq:2}
+		\textrm{For any fixed }c,\,m \in GF(p), \\
+    \textrm{there exists a unique key }k\in\{0,1,...,p-1\} \textrm{, s.t. }\\
+		 k\cdot m =c\; mod \; p.
+\end{equation}
+{% endmath %}
+Or namely, {%m%}k:=m^{-1}\cdot c\; mod \;p{%em%}.
+
+Since the inverse of an element in a prime field is unique (if any){%sidenote 3 'See more math detail in <i>A Computational Introduction to Number Theory and Algebra</i> [Shoup,V.] -- Chapter 2.2 Solving linear congruence '%}, statement \eqref{eq:2} is true, thus complete the proof.
+
+## 2.2 (A good substitution cipher)
+### *Question*:
+{% fullwidth "assets/img/Q2.2.png" "" %}
+
+### *Solution*:
+
+The approach is similar to [Question 2.1](#21-multiplicative-one-time-pad): for {%m%}\mathcal M = \mathcal C = \sum^{L}{%em%} to achieve perfect secrecy,
+{%math%}
+\{\begin{array}{l}
+c[i] \textrm{ must be independent of } c[j] \textrm{ for all } i\neq j \\
+\textrm{for all }e\in\sum,\; i \in \{0,1,...,L-1\} \; Pr[\,e\,] \textrm{ is the same}
+\end{array}
+{%endmath%}
+
+Since {% m %}k[i] \xleftarrow[]{\text{R}} S,\;{% em %} is randomly selected and uniformly distributed, thus:
+{%math%}
+\textrm{For any }e \in\sum, \; Pr[\,k[i](m[i])=e\,] = {1\over|\sum|}
+{%endmath%}
+
+And according to [Theorem 2.1](#theorem-21), {%m%}\mathcal E{%em%} is perfectly secure.
+## 2.3 (Chain encryption)
+### *Question*:
+{% fullwidth "assets/img/Q2.3.png" "" %}
+
+### *Solution*:
+
+The proof is almost identical to [Solution 2.2](#solution-1), the only worthy note is that: in this proof, we need to point out {%m%}k_{1},\, k_{2},\, m{%em%} are independent of each other.
+
+### *Application: access control on encrypted files*:
+
+One might wonder why and where would anybody ever use this "chained encryption" construction, or more straightforward speaking, why not simply encrypting the message with one key instead? As it turns out, such paradigm can be seen in file access control systems.
+
+In many cases, the {%m%}k_{2}{%em%} in our construction is called a **master key**, while {%m%}k_{1}{%em%} is called an **ephemeral key**. Indicated by their names, *ephemeral key* is for "temporary" use and can be changed from time to time, whereas *master key* means to stay consistent and intact for longer period.
+
+One always uses the master key to encrypt the file, and the *access control* feature is handled by further encrypting the master key using separate, possibly multiple ephemeral keys, each known to one particular user and distributing the encrypted master keys to users. Those ephemeral keys are most likely directly derived from a password through a KDF.{%sidenote 4 'Key Derivation Function: mentioned in Chapter 8, think of this as a deterministic "twisting machine" operating on a somewhat predictable  passphrase of variable length and transform it into a bit string of fixed lenghth with higher entropy.'%} Now this approach has mostly three advantages:
+
+1. User could frequently change their passwords without decrypting and re-encrypting all files on disk. All we need is re-encrypt the master key using this new *ephemeral key* deduced from the new password.
+2. *Master key* usually will be randomly generated with a good source of entropy pool, resulting in a bit string that's computationally indistinguishable from random, better than a passphrase which is more vulnerable to dictionary attacks. Plus the encrypted files could be computed once and locked up in a physically secure location.
+3. Easier distribution of the decryption key. More than one user could be granted access to the data and even if one forgets his/her password, the encrypted files don't end up Gibberish forever.
+
+For interested readers, you could find a fascinating use case here: [Using Trusted Hardware to build a Password Manager](https://software.intel.com/en-us/articles/intel-software-guard-extensions-tutorial-part-2-app-design). In the fourth post of the series, you could find the architecture inside [Intel SGX](https://software.intel.com/en-us/articles/intel-software-guard-extensions-tutorial-part-1-foundation) using a chained encryption.
+## 2.4 (A broken one-time pad)
+### *Question*:
+{% fullwidth "assets/img/Q2.4.png" "" %}
+### *Solution*:
+
+An efficient adversary sends two messages of the same length:
+{%math%}
+m_{0}=0^{L}\\
+m_{1}=0^{L-1}\,||\,1
+{%endmath%}
+
+To see why this would completely destroy the one-time pad with advantage of 1, when {%m%}b=0{%em%} or Exp(0), we could expect the number of 1 for the output is even. Compared to when {%m%}b=1{%em%} or Exp(1), there are two cases:
+{%math%}
+\{\begin{array}{lcl}
+k[L-1]=0 & \rightarrow & \textrm{number of 1 in the first L-1 bit of the output is even} \\
+& \rightarrow & \textrm{number of 1 in the final output is odd} \\
+k[L-1]=1 & \rightarrow & \textrm{number of 1 in the first L-1 bit of the output is odd} \\
+&\rightarrow & \textrm{number of 1 in the final output is odd}
+\end{array}
+{%endmath%}
+As we could see, in both cases, the output turns to have odd number of 1 which enables the adversary to distinguish the two game with probability of 1.
+
+## 2.5 (impossibility result)
+### *Question*:
+{% fullwidth "assets/img/Q2.5.png" "" %}
+
+### *Solution*:
+
+From [Shannon Theorem](#theorem-25), we know that if {%m%}|\mathcal K| \leq |\mathcal M|{%em%}, then there exists {%m%}m_{0}, m_{1}\in \mathcal M, c\in\mathcal C{%em%}, s.t. :
+{%math%}
+\begin{equation}
+	\label{eq:3}
+		Pr[E(k,\, m_{0})=c]>0 \;\textrm{and}\; Pr[E(k,\,m_{1})=c]=0
+\end{equation}
+{%endmath%}
+
+Let {%m%}Z:={%em%} event that \eqref{eq:3} happens, assuming {%m%}|\mathcal M| = (1+\alpha)\cdot|\mathcal K|{%em%}:
+{%math%}
+\begin{array}{cl}
+\rightarrow & Pr[Z]\leq {1\over1+\alpha}\cdot{\alpha\over 1+\alpha}\leq{\alpha\over 1+\alpha}\\
+\because & \textrm{SSadv}[\mathcal A, \mathcal E]\leq Pr[Z]\leq\epsilon \\
+\rightarrow & {\alpha\over1+\alpha}\leq\epsilon \\
+\textrm{or}\; & {1\over1+\alpha}={|\mathcal K|\over|\mathcal M|}\geq 1-\epsilon
+\end{array}
+{%endmath%}
+
+Thereby finish the proof.
+
+## 2.6 (a matching bound)
+### *Question:*
+{% fullwidth "assets/img/Q2.6.png" "" %}
+### *Solution:*
+
+**(a)** Here is an efficient algorithm for the adversary:
+{%math%}
+v \xleftarrow[]{\text{R}} \{0,1\}^j,\quad u \xleftarrow[]{\text{R}} \{0,1\}^j\backslash\{0\}^j \\  
+w \xleftarrow[]{} v ⊕ u \\
+\left.\{
+  \begin{array}{lcl}
+    m_0 &:=& v \;||\;\{0,1\}^{L-j}\\
+    m_1 &:=& w \;||\;\{0,1\}^{L-j}\\
+  \end{array}
+\right.
+{%endmath%}
+To determine the advantage of the adversary {%m%}\mathcal A{%em%} above, we observe that: if and only if the adversary *accidentally* pick a {%m%}u{%em%} that equals to the randomly selected (by challenger) key {%m%}k{%em%}, then will {%m%}\mathcal A{%em%} be able to distinguish the outputs of the two messages. More precisely, in this extremely lucky yet unlikely case, *if our challenger encrypted {%m%}m_0{%em%}, then the ciphertext would be exactly {%m%}m_1{%em%}, and vice versa.* Thus:
+{%math%}
+SSadv[\mathcal A, \mathcal E] = Pr[\mathcal A \textrm{ correctly guesses }u] = {1\over2^j-1} = {ϵ\over1-ϵ}
+{%endmath%}
+
+**(b)** Even with computationally unbounded adversary who could operate under a super-poly time and algorithm, which allows exhaustive search through key space, {%m%}\mathcal A{%em%} still couldn't distinguish encrypted messages with non-negligible probability. In another word, there is no better way than randomly guessing described in (a), therefore the inequality:
+{%math%}
+SSadv[\mathcal A, \mathcal E] ⩽ {ϵ\over1-ϵ}
+{%endmath%}
+
+## 2.7 (deterministic cipher)
+### *Question*:
+{% fullwidth "assets/img/Q2.7.png" %}
+### *Solution*:
+**(a)**
+If {%m%}\mathcal A{%em%} is not probabilistic, it's essentially the same as [Theorem 2.3](#theorem-23). Thus {%m%}SSadv[\mathcal A_{non-prob}, \mathcal E]=0{%em%};
+
+Else if {%m%}\mathcal A{%em%} is probabilistic, then it's easy to see that in "[bit-guessing game](#bit-guessing)",{%m%}SSadv^∗[\mathcal A_{prob}, \mathcal E]=|\,Pr[b=\hat{b}]-{1\over2}\,|=0{%em%}
+
+Putting it together:
+{%math%}
+SSadv[\mathcal A, \mathcal E] = SSadv[\mathcal A_{non-prob}, \mathcal E] + 2×SSadv^∗[\mathcal A_{prob}, \mathcal E] = 0
+{%endmath%}
+
+**(b)** For every fixed {%m%}l \in {0,...,L}{%em%}, the semantically secure one-time pad has an advantage of 0. Therefore:
+{%math%}
+SSadv[\mathcal A, \mathcal E] ⩽ ∑^{L-1}_{i=0}SSadv[\mathcal A, \mathcal E_i] = 0
+{%endmath%}
+
+### Note:
+In the first part of this question, it might be confusing to make sense of a "*probabilistic adversary*". You may be wondering "couldn't any adversary with random source such as `/dev/random` be probabilistic, why specifically pointing it out?".
+
+Now, intuitively, [many](https://crypto.stackexchange.com/questions/17815/what-does-it-mean-for-an-adversary-to-run-in-ppt) describe a probabilistic adversary as the ability to *toss a coin*, and such ability or access to random source might provide *additional power*. Because if, for the sake of the discussion, one adversary could only design deterministic strategies, then there are cases where the strategies are actually worse than just "randomly guess". Therefore in many cases, it's more reasonable and natural to assume a probabilistic adversary who would choose whichever strategy with a higher advantage.
+
+## 2.8 (roulette)
+### *Question*:
+{% fullwidth "assets/img/Q2.8.png" %}
+### *Solution*:
+The analysis is similar to [the elementary wrapper in Section 2.3.4](#section-234), we use exactly the same elementary wrapper.
+
+Recall that in this attack game, {%m%}p_0{%em%} represents the probability of {%m%}\mathcal B{%em%} outputs 1 in *Experiment 0*, which equals to the probability of {%m%}\mathcal A{%em%} correctly guessing the outcome by analyzing encrypted outcomes; while *Experiment 1* (so-called "idealized Internet roulette") is cleverly designed to be equivalent to offline real-life game, thus {%m%}p_1{%em%} is equal to the probability of an off-line player winning the game. Obviously {%m%}|p_0-p_1|=SSadv[\mathcal B, \mathcal E]⩽ϵ{%em%} where {%m%}ϵ{%em%} is negligibly small.
+
+Now the main difference in our exercise, is the varying payouts associated with different outcomes. On top of comparing the probability of winning the game, we need further investigating the expected payout in both situations.
+
+In the real-life game, the optimal strategy, even knowing the payout matrix, is still betting randomly. Just to demonstrate, if Alice always bets on outcomes with the highest payout (i.e. n), then the expected winnings will be {%m%}{n\over n+1}{%em%}. Let's see how much she could win by just randomly bet:
+{%math%}
+μ=\textrm{Exp(X)}=\sum^n_{i=1}Pr[X⩾i]={n\over 2}
+{%endmath%}
+
+Meanwhile, in our Internet version of the game (i.e. *Experiment 0*), the elementary wrapper/adversary {%m%}\mathcal B{%em%} randomly picked a value from {%m%}{0,...,n}{%em%}, which effectively identical to the "random selection of value" described in the last paragraph.
+
+Putting all together:
+{%math%}
+\begin{array}{lll}
+|μ-μ'|&=&|\,p_0×\sum^n_{i=1}Pr[X⩾i]-p_1×\sum^n_{i=1}Pr[X⩾i]\,|\\
+&=&{n\over 2}×|p_0-p_1|\\
+&⩽&{n\over 2}×ϵ\\
+\end{array}
+{%endmath%}
+
+Since {%m%}ϵ{%em%} is negligible, {%m%}n{%em%} is poly-bounded ,the multiplication of them shall be negligible.
+
+## 2.9 (Fact 2.6)
+### *Question*
+{% fullwidth "assets/img/Q2.9.png" %}
+{% fullwidth "assets/img/Fact2.6.png" %}
+### *Solution*
+
+The proof for these three statements leverages the definition of *negligible* and *poly-bounded*, and the process of which resembles that of proving the limit of a function at certain point in your Calculus class.
+
+**(i)** Since {%m%}ϵ{%em%} is negligible, then for {%m%}∀c\in\mathbb{R_{≥0}}{%em%}, there exists {%m%}n_0\in\mathbb{Z_{≥1}}{%em%}, such that for all integer {%m%}n≥n_0{%em%}, we have {%m%}ϵ=|f_1(n)|≤1/n^c{%em%}, which by definition of limit in Calculus, we get:{%m%}\lim_{n\to∞}f_1(n)n^c=0{%em%}
+
+Similarly for {%m%}ϵ'{%em%}, there exists {%m%}n_0'\in\mathbb{Z_{≥1}}{%em%}, such that for all integer {%m%}n≥n_0'{%em%}, we have {%m%}ϵ=|f_2(n)|≤1/n^c{%em%} and therefore equivalently {%m%}\lim_{n\to∞}f_2(n)n^c=0{%em%}
+{%math%}
+ϵ+ϵ'=\lim_{x\to∞}(f_1(n)+f_2(n))×{1\over n^c}=0
+{%endmath%}
+Thus we know {%m%}ϵ+ϵ'{%em%} is a negligible value.
+
+**(ii)** Let's take more direct approach in this exercise, instead of using limit, we will be using solely the definition itself.
+
+If {%m%}\mathcal Q{%em%} is poly-bounded, then there exists {%m%}c_1,d_1\in \mathbb{R_{\gt0}}{%em%} such that for all integers {%m%}n\gt0{%em%}, we have {%m%}\mathcal Q=|f_1(n)|≤n^{c_1}+d_1{%em%};
+
+Similarly, there exists {%m%}c_2,d_2\in\mathbb{R_{\gt0}}{%em%} such that for all integers {%m%}n\gt0{%em%}, we have {%m%}\mathcal Q'=|f_2(n)|≤n^{c_2}+d_2{%em%}.
+
+Now let {%m%}c=max\{c_1, c_2\}+1,\quad d=d_1+d_2{%em%}, we could derive the following:
+{%math%}
+\textrm{For all integers } n>0,\\
+\mathcal Q_{sum} = \mathcal Q + \mathcal Q' ≤|f_1(n)|≤n^{c_1}+d_1 +|f_2(n)|≤n^{c_2}+d_2\\
+≤n^c+d
+{%endmath%}
+
+By definition of *poly-bounded*, we could say {%m%}\mathcal Q+\mathcal Q'{%em%} is also poly-bounded.
+
+Proving multiplicative result is similar. Pick {%m%}c=2×max\{c_1, c_2\}+1, \quad d=max\{d_1,d_2\}^2+\sqrt[max\{c_1,c_2\}]{2max\{d_1,d_2\}}{%em%}. It is indeed quite troublesome, without loss of generality, let's assume {%m%}c_2≥c_1,d_2≥d_1{%em%}:
+{%math%}
+\begin{array}{lll}
+  \mathcal Q_{mul}&=&\mathcal Q×\mathcal Q'\\
+  &≤&(n^{c_1}+d_1)×(n^{c_2}+d_2)\\
+  &≤&(n^{c_2}+d_2)^2\\
+  &≤&n^{2c_2}+2d_2n_{c_2}+d_2^2\\
+  &≤&n^{2c_2+1}+\sqrt[c_2]{2d_2}+d_2^2\\
+  &=&n^c+d\\
+\end{array}
+{%endmath%}
+Thus by definition proves the multiplication of two poly-bounded function is also poly-bounded.
+
+**(iii)** Almost identical to **(i)**, hint: {%m%}\lim_{n\to∞}f(n)(n^c+d)=0{%em%}
+
+## 2.10 (definition of semantic security)
+### *Question*:
+{% fullwidth "assets/img/Q2.10.png" %}
+### *Solution*:
+
+**(a)** and **(c)** are both semantically secure scheme. By constructing an elementary wrapper {%m%}\mathcal B{%em%} for {%m%}\mathcal A{%em%}, we could show that {%m%}SSadv[\mathcal B, \mathcal E']=SSadv[\mathcal A, \mathcal E]{%em%}.
+
+Specifically, in **(a)**, {%m%}\mathcal B{%em%} sends two messages of the same length like the usual attack game, and upon receiving from its challenger, it "stripe off" the prepending "0" and send it to {%m%}\mathcal A{%em%}, then it outputs {%m%}\hat{b}{%em%} the same as whatever {%m%}\mathcal A{%em%} outputs;
+
+In **(c)**, we replace "striping off 0" operation with "inverse encrypted ciphertext" operation and get the same efficient adversary {%m%}\mathcal B{%em%}.
+
+**(b)** is NOT semantically secure: it would be completely broke if {%m%}\mathcal A{%em%} sends two messages with different parity. For example: {%m%}m_0=\{0\}^L,\quad m_1=\{0\}^{L-1}\,||\,1{%em%}.
+
+**(d)** is semantically secure, but the proof is different from that of the **(a)** or **(c)**. Instead of having an elementary wrapper, {%m%}\mathcal A{%em%} becomes the wrapper for another adversary {%m%}\mathcal D{%em%}, for instance. And the Experiments start by {%m%}\mathcal D{%em%} randomly selecting two different bit strings of the same length and send them to {%m%}\mathcal A{%em%} who reverses both and forwards to its (i.e. {%m%}\mathcal A's{%em%}) challenger. Upon receiving the ciphertext, {%m%}\mathcal A{%em%} forward it directly to {%m%}\mathcal D{%em%} and outputs whatever {%m%}\mathcal D{%em%} outputs.
+
+It's easy to see the {%m%}SSadv[\mathcal D, \mathcal E']=SSadv[\mathcal A, \mathcal E]{%em%}, which proves **(d)**'s security.
+
+## 2.11 (key recovery attacks)
+### *Question*:
+{% fullwidth "assets/img/Q2_11.png" %}
+### *Solution*:
+
+**(a)** As one-time pad uses a deterministic algorithm whose inverse operation is easy, namely {%m%}\hat{k} = m ⊕ c{%em%}, which yields {%m%}KRadv[\mathcal{A}, \mathcal{E}]=1{%em%}, thus one-time pad is completely broken in key recovery attack games.
+
+**(b)** We build an elementary wrapper adversary $\mathcal{B}$ as follows:
+> Upon receiving $m$ from $\mathcal{A}$, does the following:
+> {%math%}
+> m_0←m, m_1\xleftarrow[]{\text{R}}\mathcal{M}
+> {%endmath%}
+> then, pass $m_0$ and $m_1$ to its challenger. Upon receiving ciphertext $c$ from the challenger, directly feed to $\mathcal{A}$, which will return $\hat{k}$. Finally the output algorithm for $\mathcal{B}$ to its semantic security challenger:
+> {%math%}
+> \text{If } D(\hat{k}, c) = m_0, \text{then outputs 1;} \\
+> \text{otherwise, outputs 0.}
+> {%endmath%}
+
+Security analysis: in Exp(0), $Pr[W_0] = Pr[\mathcal{A} \text{ wins key recovery game}] = KRadv[\mathcal{A}, \mathcal{E}]$, because challenger of $\mathcal{B}$ encrypted $m_0 = m$ in this case, which makes it exactly the same as the key recovery game for $\mathcal{A}$;
+Now in Exp(1), since $c←E(k, m_1)$ where $m_1$ is not related to $m$, thus $\hat{k}$ is independent of actual key of the ciphertext. However, there's still chance $\mathcal{B}$ outputs 1 in this experiment, namely cases where $\mathcal{A}$ guesses a different key which decrypt to the same plaintext $m$ by accident, and based on this blind luck, we have: $Pr[W_1]={\|\mathcal{K}\|\over\|\mathcal{M}\|}$.
+
+Putting all together:
+{%math%}
+\begin{array}{lll}
+  SSadv[\mathcal{B}, \mathcal{E}] &=& |Pr[W_0]-Pr[W_1]| \\
+  &=& KRadv[\mathcal{A}, \mathcal{E}] - { |\mathcal{K}|\over|\mathcal{M}| } \\
+\end{array}
+{%endmath%}
+
+As long as $ϵ$ is negligible, and $\mathcal{E}$ is semantically secure, cipher should be key recovery resistant. {%sidenote 5 "TODO: diagram to be added once corresponding MetaPost scripts are done."%}
+
+
+**(c)** First conclusion to draw from the first two questions is: key recovery security is a sufficient but not necessary condition for semantic security of the underlying cipher. Especially, one needs to come to the realization that semantic security does NOT imply key recovery attack resistance.
+
+If $\|\mathcal{M}\|$ is super-poly and $\|\mathcal{K}\|$ is poly-bounded, it's clear to see $KRadv[\mathcal{A}, \mathcal{E}]$ is also negligible, since both $SSadv[\mathcal{A}, \mathcal{E}]$ and $ϵ$ are negligible, which directly contradicts with our realization.
+
+
+## 2.12 (security against message recovery)
+### *Question*:
+{% fullwidth "assets/img/Q2_12.png" %}
+### *Solution*:
+
+Consider a substitution cipher, where a random permutation of the message is applied to derive its ciphertext. It is completely secure against message recovery, as brutal forcing the cipher text requires iterating through all possible permutations $P: \\{0,1\\}^{\|M\|} \; →\\{0,1\\}^{\|C\|}$ {%sidenote 6 "even with letter frequency analysis, the advantage should be negligible."%}.
+
+However such substitution cipher is completely broken in SS attack game, for instance:
+{%math%}
+m_0[0]=m_0[1]\;→\;c[0]=c[1]\\
+m_1[0]\neq m_1[1]\;→\;c[0]\neq c[1]
+{%endmath%}
+
+## 2.13 (advantage calculation)
+### *Question*:
+{% fullwidth "assets/img/Q2_13.png" %}
+### *Solution*:
+**(a)**:
+- (i): $SSadv[\mathcal{A}, \mathcal{E}] = \| Pr[W_0] - Pr[W_1]\| = \|{1\over2} - 1\| = {1\over2}$
+- (ii): $SSadv[\mathcal{A}, \mathcal{E}] = \| Pr[W_0] - Pr[W_1]\| = \|{1\over4} - {1\over2}\| = {1\over4}$
+- (iii): $SSadv[\mathcal{A}, \mathcal{E}] = \| Pr[W_0] - Pr[W_1]\| = \|{1\over2} - 0\| = {1\over2}$
+- (iv): $SSadv[\mathcal{A}, \mathcal{E}] = \| Pr[W_0] - Pr[W_1]\| = \|{1\over2} - 1\| = {1\over2}$
+- (v): $SSadv[\mathcal{A}, \mathcal{E}] = \| Pr[W_0] - Pr[W_1]\| = \|({1\over2}+{1\over2}×{1\over2}) - {1\over2}\| = {1\over4}$
+
+**(b)**: The maximum advantage is ${1\over2}$, my intuitively proof is shown as follow (i.e. the maximum discrepancy between the probability distribution over the two possible values is $1\over2$.) {%sidenote 7 "This proof should make more sense after learning the concept of statistical distance in Chapter 3."%}:
+
+{%maincolumn "assets/img/Q2_13_b.png"%}
+
+
+## 2.14 (permutation cipher)
+### *Question*:
+{% fullwidth "assets/img/Q2_14.png" %}
+### *Solution*:
+{%math%}
+m_0[0]=m_0[1]\;→\;c[0]=c[1]\\
+m_1[0]\neq m_1[1]\;→\;c[0]\neq c[1] \\
+⇒ SSadv[\mathcal{A}, \mathcal{E}] = 1
+{%endmath%}
+
+## 2.15 (nested encryption)
+### *Question*:
+{% fullwidth "assets/img/Q2_15.png" %}
+### *Solution*:
+
+**(a)**: Upon receiving $m_0, m_1$ from $\mathcal{A}$, the elementary wrapper $\mathcal{B}$ works as follow:
+- • it forwards $m_0, m_1$ to $\mathcal{B}$'s SS challenger, who would randomly choose a key $k_0\xleftarrow{R}\mathcal{K}$ and send back $c_0\xleftarrow{}E(k_0, m_b)$ to $\mathcal{B}$
+- • $\mathcal{B}$ further selects $k_1\xleftarrow{R}\mathcal{K}$ and send the nestedly encrypted $c_1\xleftarrow{}E(k_1, c_0)$ together with $k_1$ to $\mathcal{A}$
+- • finally $\mathcal{B}$ will output whatever $\mathcal{A}$ outputs
+
+Let $p_b$ be the probability $\mathcal{A}$ outputs 1 in its nested encryption game, $Pr[W_b]$ be the probability of $\mathcal{B}$ outputs 1 in its SS game. We could observe that $Pr[W_0]=p_0, Pr[W_1]=p_1$, thus: {%sidenote "2-15" "TODO: add MetaPost script graph"%}
+{% math %}
+\begin{equation}
+\label{eq:4}
+SSadv[\mathcal{B}, \mathcal{E}] = |p_0-p_1| = NEadv[\mathcal{A}, \mathcal{E}]
+\end{equation}
+{% endmath %}
+
+
+**(b)**: {%sidenote "2-15" "TODO: add MetaPost script graph"%} Now in Exp(0), $c'$ and $k_0$ are not related, thus $p_0={1\over2}$; while in Exp(1), let $p$ be the probability of $\mathcal{A}$ outputs a $\hat{b}: b=\hat{b}$, clearly $p_1 = p$.
+
+By definition, $SSadv[\mathcal{B}, \mathcal{E}] = \|p_0-p_1\| $ and $NEadv[\mathcal{A}, \mathcal{E}] = \|p-{1\over2}\|$. From there, we could see how Eq.4 still hold. {%sidenote "2-15.2" "an further implication of this semantic security in onion routing"%}
+
+## 2.16 (self-referential encryption)
+### *Question*:
+{% fullwidth "assets/img/Q2_16.png" %}
+### *Solution*:
+
+**(a)**: $\tilde{E} = E(k, m)⊕E(k, m⊕k)$
+
+To break $\tilde{E}$, we set $m_0=\\{0\\}^L, m_1\xleftarrow{R}\|\mathcal{M}\|$. Observing that $\tilde{E}(k, 0)=\tilde{E}(k, k)$, thus given the latter, the adversary could tell which experiment he/she's in with absolute confidence, or probability of 1.
+
+**(b)**: $\hat{E} = E(k, m⊕k)$ or $E(k,m)⊕k$ etc.
+
+## 2.17 (compression encryption)
+### *Question*:
+{% fullwidth "assets/img/Q2_17.png" %}
+### *Solution*:
+
+- "compress-then-encrypt": information leakage from the length of the cipher text, as during the compression, only some portion of the messages are significantly shrinked. While the variable one-time pad could be perfectly semantic secure, yet in reality, length of the compressed file (encrypted or unencrypted) could reveal information about the original file.
+- "encrypt-then-compress": would require a really big key, at least as large as the file, which could sometimes be gigabytes in size.
+
+## 2.18 (voting protocol)
+### *Question*:
+{% fullwidth "assets/img/Q2_18.png" %}
+### *Solution*:
+**(a)**
+{%math%}
+\begin{array}{cl}
+  \text{From protocol:}&C_t = (C_0+ΣV_i) \text{ mod } n \\
+  →&∑v_i = (C_t - C_0) \text{ mod }n \\
+  →&correctness
+\end{array}
+{%endmath%}
+
+**(b)**:
+
+**(c)**:
+
+
+## 2.19 (two-way split keys)
+### *Question*:
+{% fullwidth "assets/img/Q2_19.png" %}
+### *Solution*:
+
+## 2.20 (simple secret sharing)
+### *Question*:
+{% fullwidth "assets/img/Q2_20.png" %}
+### *Solution*:
+
+## 2.21 (simple threshold encryption)
+### *Question*:
+{% fullwidth "assets/img/Q2_21.png" %}
+### *Solution*:
+
+## 2.22 (bias correction)
+### *Question*:
+{% fullwidth "assets/img/Q2_22.png" %}
+### *Solution*:
+
+## Shame-free Cheat Sheet
+### *Theorem 2.1*:
+{% fullwidth 'assets/img/Theorem2_1.png' %}
+
+### *Theorem 2.5*:
+{% fullwidth 'assets/img/Theorem2_5.png' %}
+
+### *Theorem 2.3*:
+{% fullwidth 'assets/img/Theorem2_3.png' %}
+
+### *Bit-guessing*:
+{% fullwidth 'assets/img/bit-guessing.png' %}
+
+### *Section 2.3.4*:
+{% fullwidth 'assets/img/roulette.png' %}

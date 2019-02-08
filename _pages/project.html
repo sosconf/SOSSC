@@ -12,26 +12,26 @@ title: Project
       <li class="listing">
         {% if project.details == false %}
           {% if project.github-page %}
-            <a href={{project.github-page}}><h4 class="contrast">{{ project.title }}</h4></a>
+            <a href={{project.github-page}} class="contrast project-title">{{ project.title }}</a>
             <p class="github-hooks">
               <a href={{project.github-page}} class="github-badge"></a>
             </p>
           {% else %}
             {% if project.website %}
-              <a href={{project.website}}><h4 class="contrast-compact">{{ project.title }}</h4></a>
+              <a href={{project.website}} class="contrast project-title">{{ project.title }}</a>
             {% else %}
-              <a><h4 class="contrast-compact">{{ project.title }}</h4></a>
+              <a class="contrast project-title">{{ project.title }}</a>
             {% endif %}
           {% endif %}
         {% else %}
-        <a href="{{base }}{{ project.url }}"><h4 class="contrast">{{ project.title }}</h4></a>
+        <a href="{{base }}{{ project.url }}" class="contrast project-title">{{ project.title }}</a>
         {%  endif %}
 
         <div class="listing-summary">
           {{ project.summary }}
         </div>
-      </li>
       <hr class="slender">
+      </li>
     {% endif %}
   {% endfor %}
 </ul>
